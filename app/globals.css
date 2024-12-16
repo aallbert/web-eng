@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+#appList {
+  display: flex;
+  justify-content: center;
+}
+
+#wikiSearchBar {
+  color: #171717;
+}
+
+#wikiButton {
+  background-color: #bebebe;
+  color: #171717;
+  min-width: 5rem;
+  margin: 1rem;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -18,4 +34,5 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  padding: 20px;
 }
