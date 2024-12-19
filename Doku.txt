@@ -1,0 +1,31 @@
+DOKU
+
+Erfahrungsbericht:
+Die Arbeit war unerwartet anspruchsvoll, aber dennoch machbar.
+Ich hatte die Möglichkeit, tief in das Thema Backend einzutauchen und konnte dabei
+viele neue Kenntnisse und Fähigkeiten erlangen. Besonders spannend fand ich es,
+mich mit den verschiedenen Technologien und Konzepten im Backend-Bereich
+auseinanderzusetzen, was meinen Horizont definitiv erweitert hat.
+
+Auf der anderen Seite lief das Frontend erstaunlich reibungslos, vor allem
+dank meiner bereits vorhandenen Erfahrung mit React. Es war eine Freude,
+die Benutzeroberfläche zu gestalten und dabei kreative Lösungen für die
+Herausforderungen zu finden, die sich mir gestellt haben. Hier konnte ich
+nicht nur mein Wissen vertiefen, sondern auch neue Ansätze ausprobieren
+und umsetzen.
+
+Insgesamt war es eine lehrreiche und produktive Erfahrung, die mir sowohl
+technische als auch persönliche Weiterentwicklung ermöglicht hat.
+Besonders zufrieden bin ich mit der Harmonie zwischen Frontend und Backend,
+die sich im Verlauf der Arbeit ergeben hat – ein Gefühl, wirklich etwas
+Wertvolles geschaffen zu haben.
+
+
+Bearbeitete Elemente:
+React - überall im Frontend, also in den ordnern /app und /app/components. Hooks wurden viel verwendet
+
+XMLHttpRequest - bei allen Api requests verwendet (sh. /app/api)
+
+Wetterdaten - Frontend seitig im Ordner /app/components, api Calls im /api/weather
+
+Aktienkurs - Frontend seitig im Ordner /app/components, api Calls im /api/stock
