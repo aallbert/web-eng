@@ -2,16 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-#appList {
-  display: flex;
-  justify-content: center;
+#appList {  
+  @apply flex flex-col items-center;
 }
 
-#wikiSearchBar {
+#thTitle {
+  width: 10%
+}
+
+#thDescription {
+  width: 20%
+}
+
+#thExtract {
+  width: 55%
+}
+
+#thLink {
+  width: 15%
+}
+
+#wikiList {
+  margin-bottom: 1.5rem;
+}
+
+input {
   color: #171717;
 }
 
-#wikiButton {
+button {
   background-color: #bebebe;
   color: #171717;
   min-width: 5rem;

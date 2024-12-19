@@ -1,8 +1,8 @@
 class WikiApiHandler {
   static serverUri: string = "http://localhost:1337/";
-  static baseUri: string = "https://en.wikipedia.org/w/api.php";
+  static baseUri: string = "https://de.wikipedia.org/w/api.php";
 
-  static async lookFor(query: string): Promise<Object> {
+  static async searchFor(query: string): Promise<Object> {
     let req: XMLHttpRequest = new XMLHttpRequest();
     // return a promise that resolves when the request completes
     return new Promise((resolve, reject) => {
@@ -22,20 +22,12 @@ class WikiApiHandler {
       };
 
       const uri = encodeURIComponent(
-        `${this.baseUri}?action=query&format=json&gpslimit=3&prop=extracts%7Cdescription&exintro=1&explaintext=1&exsentences=3&generator=prefixsearch&gpssearch=${query}`
+        `${this.baseUri}?action=query&format=json&gpslimit=4&prop=extracts%7Cdescription&exintro=1&explaintext=1&exsentences=3&generator=prefixsearch&gpssearch=${query}`
       );
       req.open("GET", this.serverUri + "proxy/wiki" + `?url=${uri}`);
-      req.send(); // send the request
+      console.log("GET", this.serverUri + "proxy/wiki" + `?url=${uri}`)
+      req.send();
     });
-  }
-
-  static test() {
-    let req: XMLHttpRequest = new XMLHttpRequest();
-    req.onload = function (res) {
-      console.log(this.responseText);
-    };
-    req.open("GET", "//localhost:1337/proxy/wiki/");
-    req.send();
   }
 }
 

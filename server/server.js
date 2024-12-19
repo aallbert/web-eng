@@ -12,7 +12,7 @@ app.use(express.static(__dirname + "/public"));
 // Proxy route
 app.get("/proxy/wiki/", async (req, res) => {
   const query = req.query.url;
-  console.log("Proxy query: ", query);
+  console.log("Wiki-proxy query: ", query);
   try {
     // use a different name for the fetch response to avoid shadowing
     const fetchResponse = await fetch(query, { method: "GET" });
@@ -23,8 +23,47 @@ app.get("/proxy/wiki/", async (req, res) => {
     // send the fetched data as the Express response
     res.json(data);
   } catch (error) {
-    console.error("Error fetching external data:", error);
+    console.error("Error fetching Wiki data:", error);
     return res.status(500).json({ error: "Failed to fetch data" });
+  }
+});
+
+app.get('/proxy/weather/', async (req, res) => {
+  //default city is Althengestett :)
+  const query = req.query.url || "Althengstett";
+  console.log("Weather-proxy query: ", query);
+
+  try {
+    // use a different name for the fetch response to avoid shadowing
+    const fetchResponse = await fetch(query, { method: "GET" });
+    
+    // extract JSON from the fetch response
+    const data = await fetchResponse.json();
+
+    res.json(data);
+  } catch (error) {
+    console.error("Error fetching Weather data:", error);
+    res.status(500).json({ error: 'Failed to fetch weather data' });
+  }
+});
+
+const STOCK_API_KEY = "KSTUX4S92HXJX5OF"; // Store API key in .env
+
+// Endpoint to fetch stock data
+app.get('/proxy/stock', async (req, res) => {
+  const query = req.query.url;
+  console.log("Stock-proxy query: ", query);
+
+  try {
+    const fetchResponse = await fetch(query, { method: "GET" });
+    
+    // extract JSON from the fetch response
+    const data = await fetchResponse.json();
+
+    res.json(data)
+  } catch (error) {
+    console.error('Error fetching stock data:', error);
+    return res.status(500).json({ error: 'Failed to fetch stock data.' });
   }
 });
 

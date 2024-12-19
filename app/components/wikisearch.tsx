@@ -1,32 +1,32 @@
 "use client";
 import WikiApiHandler from "../api/wiki/wikiApiHandler";
 import { useState } from "react";
-import { Form } from "react-bootstrap";
 import WikiExtractor, { Page } from "../api/wiki/wikiExtractor";
 import WikiContent from "./wikiContent";
 import "../globals.css";
-import exp from "constants";
 
-const WikiPage: React.FC = () => {
+const WikiSearch: React.FC = () => {
   const [getPage, setPages] = useState<Page[]>([]);
   const [searchInput, setSearchInput] = useState("");
 
   return (
     <div>
-      <>
-        <Form.Label>Geben Sie ihre Suche ein: </Form.Label>
-        <Form.Control id="wikiSearchBar" onChange={(t) => setSearchInput(t.target.value ?? "")} type="text" />
-      </>
+      <h2>Suchanfrage eingeben</h2>
+      <input
+      type="text"
+      placeholder="Suchanfrage eingeben" 
+      id="wikiSearchBar" 
+      value={searchInput}
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchInput(e.target.value ?? "")} />
+      
       <button
         id="wikiButton"
         onClick={async () => {
           if (searchInput == "") return;
-          const regex = /^[A-Za-z]+$/;
-          if (!regex.test(searchInput)) return;
 
-          const res: Object = await WikiApiHandler.lookFor(searchInput);
-          const p: Page[] = WikiExtractor.extractPages(res);
-          setPages(p);
+          const res: Object = await WikiApiHandler.searchFor(searchInput);
+          const pages: Page[] = WikiExtractor.extractPages(res);
+          setPages(pages);
         }}
       >
         Suche
@@ -38,4 +38,4 @@ const WikiPage: React.FC = () => {
   );
 };
 
-export default WikiPage;
+export default WikiSearch;
