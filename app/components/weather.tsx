@@ -11,7 +11,7 @@ const Weather: React.FC = () => {
   const [error, setError] = useState<string>(''); // Error handling
 
   return (
-    <div style={{ fontFamily: 'Arial, sans-serif', margin: '20px' }}>
+    <div >
       <h2>Wetterdaten Anzeige</h2>
       <input
         type="text"
@@ -27,7 +27,7 @@ const Weather: React.FC = () => {
         setWeatherData(weatherData);
         }
         
-        } style={{ marginLeft: '10px' }}>
+        } >
         Wetter abrufen
       </button>
 
@@ -38,7 +38,7 @@ const Weather: React.FC = () => {
     <h3>{weatherData.city} - 5 Tage Wetter</h3>
     {weatherData.forecasts.map((item: forecast, index: number) => (
       <div key={index} style={{ marginBottom: "10px" }}>
-        <strong>{new Date().toLocaleDateString()}</strong>
+        <strong>Zeipunkt: {item.time.toString() }</strong>
         <p>Temperatur: {item.temperature}°C</p>
         <p>Wetter: {item.description}</p>
         <p>Luftfeuchtigkeit: {item.humidity}%</p>

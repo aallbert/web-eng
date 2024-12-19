@@ -1,8 +1,13 @@
 /** 
  * Interface for Weather Data extracted from the API response 
  */
+export interface cityData {
+  lat: number;
+  lon: number;
+}
+
 export interface forecast {
-  time: Date;
+  time: string;
   temperature: number; // in Celsius
   description: string; // Weather description
   humidity: number; // Percentage of humidity
@@ -24,18 +29,15 @@ export interface WeatherData {
       if (!apiResponse) {
         throw new Error("Invalid data format");
       }
-      if (apiResponse.cod = 404) {
-        console.log("apiResponse: ", apiResponse)
-        throw new Error("cod = 404 -> error by the Weather API")
-      }
+         console.log("apiResponse: ", apiResponse)
       const resultLocation = apiResponse.city.name;
       let resultForecast: forecast[] = [];
       for (let i = 0; i < apiResponse.list.length; i++) {
         let forecast = apiResponse.list[i];
         resultForecast.push({
-          time: forecast.dt,
+          time: forecast.dt_txt,
           temperature: forecast.main.temp,
-          description: forecast.weather.description,
+          description: forecast.weather[0].description,
           humidity: forecast.main.humidity,
           windSpeed: forecast.wind.speed
         })
@@ -44,6 +46,18 @@ export interface WeatherData {
         forecasts: Object.values(resultForecast)
       };
       };
+
+      static extractLonLat(coordinateApi: Object): cityData {
+        console.log("Coordinate API Input to Extractor:", coordinateApi); // Log input
+        if (Array.isArray(coordinateApi) && coordinateApi.length > 0) {
+          const { lat, lon } = coordinateApi[0]; // Assuming the response is an array
+          console.log("Extracted lat, lon:", lat, lon); // Log extracted values
+          return { lat, lon };
+        } else {
+          throw new Error("Invalid coordinate API response structure.");
+        }
+      }
+      
     }
   
   

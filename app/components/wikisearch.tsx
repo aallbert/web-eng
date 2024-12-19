@@ -11,7 +11,7 @@ const WikiSearch: React.FC = () => {
 
   return (
     <div>
-      <h2>Suchanfrage eingeben</h2>
+      <h2>Wikipedia Suche</h2>
       <input
       type="text"
       placeholder="Suchanfrage eingeben" 
@@ -24,8 +24,8 @@ const WikiSearch: React.FC = () => {
         onClick={async () => {
           if (searchInput == "") return;
 
-          const res: Object = await WikiApiHandler.searchFor(searchInput);
-          const pages: Page[] = WikiExtractor.extractPages(res);
+          const result: Object = await WikiApiHandler.searchFor(searchInput);
+          const pages: Page[] = WikiExtractor.extractPages(result);
           setPages(pages);
         }}
       >

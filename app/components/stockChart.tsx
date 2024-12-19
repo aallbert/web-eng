@@ -57,15 +57,15 @@ const StockChart: React.FC = () => {
   };
 
   return (
-    <div style={{ margin: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h2>Aktienkurse suchen</h2>
+    <div >
+      <h2>Aktienkurse Darstellung</h2>
       <div>
         <input
           type="text"
           placeholder="Aktiensymbol eingeben (z.B. AAPL)"
           value={symbol}
           onChange={(e) => setSymbol(e.target.value.toUpperCase())}
-          style={{ marginRight: '10px' }}
+          
         />
         <button onClick={async () => {
           if (symbol == "") return;

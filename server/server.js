@@ -47,7 +47,24 @@ app.get('/proxy/weather/', async (req, res) => {
   }
 });
 
-const STOCK_API_KEY = "KSTUX4S92HXJX5OF"; // Store API key in .env
+app.get('/proxy/weather/city/', async (req, res) => {
+  //default city is Althengestett :)
+  const query = req.query.url || "Althengstett";
+  console.log("City-proxy query: ", query);
+
+  try {
+    // use a different name for the fetch response to avoid shadowing
+    const fetchResponse = await fetch(query, { method: "GET" });
+    
+    // extract JSON from the fetch response
+    const data = await fetchResponse.json();
+
+    res.json(data);
+  } catch (error) {
+    console.error("Error fetching City data:", error);
+    res.status(500).json({ error: 'Failed to fetch City data' });
+  }
+});
 
 // Endpoint to fetch stock data
 app.get('/proxy/stock', async (req, res) => {
